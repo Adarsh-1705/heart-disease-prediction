@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CardioSense AI — Heart Disease Prediction</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════ NAVBAR ═══ -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <span class="logo-text">CardioSense<span class="logo-accent">AI</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="#predict" class="nav-link">Predict</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#models" class="nav-link">Models</a>
+      </div>
+      <a href="#predict" class="nav-cta">Start Assessment</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+      <div class="hero-orb hero-orb-4"></div>
+    </div>
+    <!-- ECG / heartbeat decoration -->
+    <div class="hero-ecg" aria-hidden="true">
+      <svg viewBox="0 0 900 56" preserveAspectRatio="none">
+        <path class="ecg-path" d="
+          M0,28 L60,28 L80,28 L90,8 L100,48 L110,4 L120,52 L130,28 L150,28
+          L210,28 L230,28 L240,8 L250,48 L260,4 L270,52 L280,28 L300,28
+          L360,28 L380,28 L390,8 L400,48 L410,4 L420,52 L430,28 L450,28
+          L510,28 L530,28 L540,8 L550,48 L560,4 L570,52 L580,28 L600,28
+          L660,28 L680,28 L690,8 L700,48 L710,4 L720,52 L730,28 L750,28
+          L810,28 L830,28 L840,8 L850,48 L860,4 L870,52 L880,28 L900,28
+        "/>
+      </svg>
+    </div>
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        AI-Powered Cardiac Risk Assessment
+      </div>
+      <h1 class="hero-title">
+        Predict Heart Disease Risk<br />
+        <span class="hero-title-accent">with Machine Learning</span>
+      </h1>
+      <p class="hero-subtitle">
+        Enter 13 clinical parameters and get an instant, evidence-based prediction
+        powered by the Cleveland Heart Disease Dataset and 6 trained ML models.
+      </p>
+      <div class="hero-actions">
+        <a href="#predict" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          Run Assessment
+        </a>
+        <a href="#how-it-works" class="btn-ghost">Learn More</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="stat-value" id="stat-acc">—</span>
+          <span class="stat-label">Model Accuracy</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="hero-stat">
+          <span class="stat-value" id="stat-auc">—</span>
+          <span class="stat-label">AUC-ROC Score</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="hero-stat">
+          <span class="stat-value">303</span>
+          <span class="stat-label">Training Samples</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="hero-stat">
+          <span class="stat-value">6</span>
+          <span class="stat-label">ML Models</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ HOW IT WORKS ═══ -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Process</span>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">A three-step pipeline from clinical data to risk assessment</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+            </svg>
+          </div>
+          <h3>Enter Patient Data</h3>
+          <p>Fill in 13 clinical parameters including age, cholesterol, blood pressure, and ECG results.</p>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <h3>ML Analysis</h3>
+          <p>The best-performing model (selected from 6 trained classifiers) processes your data in real time.</p>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3>Get Your Result</h3>
+          <p>Receive an instant risk assessment with probability score and actionable insights.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ PREDICTION FORM ═══ -->
+  <section class="predict-section" id="predict">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Assessment</span>
+        <h2 class="section-title">Heart Risk Prediction</h2>
+        <p class="section-subtitle">All fields are required. Values are based on standard clinical measurements.</p>
+      </div>
+
+      <div class="predict-layout">
+        <!-- Form Card -->
+        <div class="form-card">
+          <form id="predict-form">
+
+            <!-- Group 1: Personal Info -->
+            <div class="form-group-label">
+              <div class="group-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              Personal Information
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="age">Age <span class="unit">(years)</span></label>
+                <input type="number" id="age" name="age" min="20" max="100" placeholder="e.g. 55" required />
+              </div>
+              <div class="form-field">
+                <label for="sex">Sex</label>
+                <select id="sex" name="sex" required>
+                  <option value="" disabled selected>Select sex</option>
+                  <option value="1">Male</option>
+                  <option value="0">Female</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Group 2: Cardiac Symptoms -->
+            <div class="form-group-label">
+              <div class="group-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+              </div>
+              Cardiac Symptoms
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="cp">Chest Pain Type</label>
+                <select id="cp" name="cp" required>
+                  <option value="" disabled selected>Select type</option>
+                  <option value="1">Typical Angina</option>
+                  <option value="2">Atypical Angina</option>
+                  <option value="3">Non-Anginal Pain</option>
+                  <option value="4">Asymptomatic</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="exang">Exercise-Induced Angina</label>
+                <select id="exang" name="exang" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Group 3: Vitals -->
+            <div class="form-group-label">
+              <div class="group-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              Vital Signs &amp; Labs
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="trestbps">Resting BP <span class="unit">(mm Hg)</span></label>
+                <input type="number" id="trestbps" name="trestbps" min="80" max="250" placeholder="e.g. 130" required />
+              </div>
+              <div class="form-field">
+                <label for="chol">Cholesterol <span class="unit">(mg/dl)</span></label>
+                <input type="number" id="chol" name="chol" min="100" max="600" placeholder="e.g. 250" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="thalach">Max Heart Rate <span class="unit">(bpm)</span></label>
+                <input type="number" id="thalach" name="thalach" min="60" max="220" placeholder="e.g. 150" required />
+              </div>
+              <div class="form-field">
+                <label for="fbs">Fasting Blood Sugar &gt; 120 mg/dl</label>
+                <select id="fbs" name="fbs" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Group 4: ECG & ST -->
+            <div class="form-group-label">
+              <div class="group-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              ECG &amp; ST Segment
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="restecg">Resting ECG Result</label>
+                <select id="restecg" name="restecg" required>
+                  <option value="" disabled selected>Select result</option>
+                  <option value="0">Normal</option>
+                  <option value="1">ST-T Wave Abnormality</option>
+                  <option value="2">Left Ventricular Hypertrophy</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="oldpeak">ST Depression <span class="unit">(exercise vs. rest)</span></label>
+                <input type="number" id="oldpeak" name="oldpeak" min="0" max="10" step="0.1" placeholder="e.g. 1.4" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="slope">ST Slope (peak exercise)</label>
+                <select id="slope" name="slope" required>
+                  <option value="" disabled selected>Select slope</option>
+                  <option value="1">Upsloping</option>
+                  <option value="2">Flat</option>
+                  <option value="3">Downsloping</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <!-- spacer -->
+              </div>
+            </div>
+
+            <!-- Group 5: Advanced -->
+            <div class="form-group-label">
+              <div class="group-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              </div>
+              Advanced Diagnostics
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="ca">Major Vessels (fluoroscopy) <span class="unit">(0–3)</span></label>
+                <select id="ca" name="ca" required>
+                  <option value="" disabled selected>Select count</option>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="thal">Thalassemia</label>
+                <select id="thal" name="thal" required>
+                  <option value="" disabled selected>Select type</option>
+                  <option value="3">Normal (3)</option>
+                  <option value="6">Fixed Defect (6)</option>
+                  <option value="7">Reversible Defect (7)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="predict-btn" id="predict-btn">
+              <span class="btn-text">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                Analyse &amp; Predict
+              </span>
+              <span class="btn-loading" style="display:none">
+                <span class="spinner"></span> Analysing…
+              </span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Result Panel -->
+        <div class="result-panel" id="result-panel">
+          <!-- Idle State -->
+          <div class="result-idle" id="result-idle">
+            <div class="idle-icon">
+              <svg viewBox="0 0 100 100" fill="none">
+                <circle cx="50" cy="50" r="45" stroke="#e2e8f0" stroke-width="2" fill="none"/>
+                <path d="M30 50 C30 35, 40 28, 50 38 C60 28, 70 35, 70 50 C70 62, 60 72, 50 78 C40 72, 30 62, 30 50Z" stroke="#94a3b8" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <path d="M20 50 h12 l4-10 l6 20 l4-14 l4 10 h10" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </div>
+            <h3>Awaiting Assessment</h3>
+            <p>Fill in the clinical parameters on the left and click <strong>Analyse &amp; Predict</strong> to get your cardiac risk result.</p>
+            <div class="idle-hints">
+              <div class="hint-item">
+                <span class="hint-dot hint-low"></span>
+                Low Risk — Probability &lt; 50%
+              </div>
+              <div class="hint-item">
+                <span class="hint-dot hint-high"></span>
+                High Risk — Probability ≥ 50%
+              </div>
+            </div>
+          </div>
+
+          <!-- Result State -->
+          <div class="result-output" id="result-output" style="display:none">
+            <!-- Risk Badge -->
+            <div class="risk-badge-wrap">
+              <div class="risk-ring" id="risk-ring">
+                <svg class="ring-svg" viewBox="0 0 120 120">
+                  <circle class="ring-bg" cx="60" cy="60" r="52" />
+                  <circle class="ring-progress" id="ring-progress" cx="60" cy="60" r="52"
+                          stroke-dasharray="326.7" stroke-dashoffset="326.7" />
+                </svg>
+                <div class="ring-content">
+                  <span class="ring-pct" id="ring-pct">0%</span>
+                  <span class="ring-label">Risk</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="risk-verdict" id="risk-verdict">
+              <div class="verdict-icon" id="verdict-icon"></div>
+              <div class="verdict-text">
+                <h2 id="verdict-title">—</h2>
+                <p id="verdict-subtitle">—</p>
+              </div>
+            </div>
+
+            <div class="result-meta">
+              <div class="meta-card">
+                <span class="meta-label">Probability</span>
+                <span class="meta-value" id="res-prob">—</span>
+              </div>
+              <div class="meta-card">
+                <span class="meta-label">Model Used</span>
+                <span class="meta-value" id="res-model">—</span>
+              </div>
+            </div>
+
+            <div class="result-note" id="result-note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="note-icon"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <p id="result-note-text">—</p>
+            </div>
+
+            <button class="reset-btn" id="reset-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9M3 3v6h6"/></svg>
+              New Assessment
+            </button>
+          </div>
+
+          <!-- Error State -->
+          <div class="result-error" id="result-error" style="display:none">
+            <div class="error-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <h3>Prediction Failed</h3>
+            <p id="error-msg">An unexpected error occurred.</p>
+            <button class="reset-btn" onclick="showIdle()">Try Again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ MODEL PERFORMANCE ═══ -->
+  <section class="models-section" id="models">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Performance</span>
+        <h2 class="section-title">Model Comparison</h2>
+        <p class="section-subtitle">Six classifiers trained on the Cleveland dataset — best AUC-ROC selected automatically</p>
+      </div>
+      <div class="models-grid" id="models-grid">
+        <div class="model-skeleton"></div>
+        <div class="model-skeleton"></div>
+        <div class="model-skeleton"></div>
+        <div class="model-skeleton"></div>
+        <div class="model-skeleton"></div>
+        <div class="model-skeleton"></div>
+      </div>
+      <p class="models-note" id="models-note" style="display:none"></p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ FEATURES ═══ -->
+  <section class="features-section">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-card feature-card-blue">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+          </div>
+          <h3>Cleveland Dataset</h3>
+          <p>Trained on the UCI Cleveland Heart Disease dataset — 303 patients, 13 clinical features, the gold standard for cardiac ML research.</p>
+        </div>
+        <div class="feature-card feature-card-teal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Instant Results</h3>
+          <p>Real-time predictions powered by a pre-trained ensemble. Get your cardiac risk probability in under a second.</p>
+        </div>
+        <div class="feature-card feature-card-indigo">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>6 ML Models</h3>
+          <p>Logistic Regression, Decision Tree, Random Forest, Gradient Boosting, SVM, and KNN — the best model is auto-selected by AUC-ROC.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <div class="logo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <span class="logo-text">CardioSense<span class="logo-accent">AI</span></span>
+          </div>
+          <p>Machine learning–powered cardiac risk assessment using the Cleveland Heart Disease Dataset.</p>
+        </div>
+        <div class="footer-disclaimer">
+          <strong>⚠️ Medical Disclaimer</strong>
+          <p>This tool is for educational and research purposes only. It is <em>not</em> a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Built with Python · Flask · scikit-learn · Cleveland UCI Dataset</p>
+        <p id="best-model-footer"></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/main.js"></script>
+  <script>
+    // ── Navbar: transparent on hero, glass on scroll ──
+    (function () {
+      var navbar = document.querySelector('.navbar');
+      var hero   = document.querySelector('.hero');
+      var heroH  = hero ? hero.offsetHeight : 80;
+      function onScroll() {
+        if (window.scrollY > 40) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    // ── Metric bars: animate on scroll into view ──
+    (function () {
+      if (!('IntersectionObserver' in window)) return;
+      var observed = false;
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && !observed) {
+            observed = true;
+            document.querySelectorAll('.metric-bar').forEach(function (bar) {
+              bar.style.width = bar.dataset.target + '%';
+            });
+          }
+        });
+      }, { threshold: 0.2 });
+      var section = document.getElementById('models');
+      if (section) observer.observe(section);
+    })();
+  </script>
+</body>
+</html>
